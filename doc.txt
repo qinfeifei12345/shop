@@ -1,0 +1,4 @@
+持久层框架  ORM
+mybatis  （轻量级）基于sql
+hibernate(重量级框架) 面向对象
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.IUserDao">
+   <!-- <resultMap id="user" type="com.entity.User">
+        <result column="uname" property="uname"></result>
+        <result column="upass" property="upass"></result>
+        <result column="card_id" property="cardid"></result>
+    </resultMap>
+    <select id="queryAll" resultMap="user">
+        select * from user_tab
+    </select>-->
+    <select id="queryAll" resultType="com.entity.User">
+        select  uname,upass,card_id as cardid from user_tab
+    </select>
+
+    <insert id="updateUserMoney">
+        update user_tab set money = money+${money} where uname=#{uname}
+    </insert>
+
+</mapper>

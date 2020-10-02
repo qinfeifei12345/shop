@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery/jquery.min.js"></script>
+</head>
+<style>
+    table{
+        width: 1000px;
+        border: 1px solid black;
+    }
+    td{
+        border: 1px solid black;
+    }
+</style>
+<body>
+<button id="getBtn">获取用户信息</button>
+<div id="data">
+
+</div>
+
+<hr>
+<input id="userAccount">To
+<input id="user">Money
+<input id="money">
+<button id="Btn">转账</button>
+
+</body>
+</html>
+<script>
+$(function () {
+    $("#getBtn").click(function () {
+        //ajax请求后台得到数据 并显示在div里
+        $.ajax({
+            url:"getUser.action",
+            dataType:"json",
+            success:function (msg) {
+                var table=$("<table></table>")
+                $.each(msg,function (index,a) {
+                    var tr=$("<tr><td>"+a.uname+"</td><td>"+a.upass+"</td></tr>")
+                    table.append(tr)
+                })
+                $("#data").append(table);
+            }
+        })
+    })
+    $("#Btn").click(function () {
+        $.ajax({
+            url:"zhuangzhang.action",
+            dataType:"json",
+            data:{userAccount:$("#userAccount").val(),user:$("#user").val(),money:$("#money").val()},
+            success:function (msg) {
+                alert(msg)
+            }
+        })
+    });
+})
+
+
+</script>
